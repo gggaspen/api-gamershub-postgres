@@ -70,3 +70,7 @@ Esta API está diseñada para ser desplegada en Railway.
 1. Conecta el repositorio a Railway
 2. Configura las variables de entorno necesarias
 3. Railway detectará automáticamente el comando de inicio en package.json
+
+## Licencia
+
+Este proyecto es propietario y confidencial. Todos los derechos reservados.
