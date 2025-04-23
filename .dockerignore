@@ -1,0 +1,19 @@
+# Directorios
+node_modules
+dist
+coverage
+.git
+.github
+.vscode
+
+# Archivos
+.env
+.env.*
+.gitignore
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+*.md
+!README.md
+.DS_Store
+.dockerignore
