@@ -8,7 +8,6 @@ API de servicio para la tienda de dropshipping GamerHub, conectando a la base de
 - **Express**: Framework web para Node.js
 - **PostgreSQL**: Base de datos relacional
 - **TypeScript**: Superset de JavaScript con tipado estático
-- **Docker**: Contenedorización para facilitar el despliegue
 
 ## Estructura del Proyecto
 
@@ -22,9 +21,7 @@ gamershub-api/
 │   ├── utils/          # Utilidades y helpers
 │   └── index.ts        # Punto de entrada de la aplicación
 ├── .env                # Variables de entorno
-├── .dockerignore       # Archivos ignorados por Docker
-├── docker-compose.yml  # Configuración para Docker Compose
-├── Dockerfile          # Definición de la imagen Docker
+├── railway.json        # Configuración para Railway
 ├── .gitignore          # Archivos ignorados por Git
 ├── package.json        # Dependencias y scripts
 └── tsconfig.json       # Configuración de TypeScript
@@ -67,45 +64,22 @@ gamershub-api/
 - `GET /api/platforms`: Obtener todas las plataformas
 - `GET /api/platforms/:slug`: Obtener detalles de una plataforma específica
 
-## Despliegue con Docker
-
-### Usando Docker Compose (desarrollo local)
-
-1. Asegúrate de tener Docker y Docker Compose instalados
-2. Configura tu archivo `.env` con las variables de entorno correctas
-3. Ejecuta: `docker-compose up --build`
-4. La API estará disponible en `http://localhost:3001`
-
-### Usando Docker (producción)
-
-1. Construye la imagen: `docker build -t gamershub-api .`
-2. Ejecuta el contenedor:
-   ```
-   docker run -p 3001:3001 \
-     -e DATABASE_URL=tu_url_postgresql \
-     -e CORS_ORIGIN=https://tu-frontend.com \
-     -e NODE_ENV=production \
-     gamershub-api
-   ```
-
 ## Despliegue en Railway
 
-### Usando el Dockerfile
+### Pasos para desplegar:
 
-1. Asegúrate de que tu repositorio contenga el `Dockerfile`
-2. Conecta el repositorio a Railway
-3. Railway detectará automáticamente el Dockerfile y lo usará para el despliegue
-4. Configura las variables de entorno en Railway:
+1. Conecta tu repositorio a Railway
+2. Railway detectará automáticamente la aplicación Node.js y utilizará el script de construcción definido
+3. Configura las variables de entorno en Railway:
    - `DATABASE_URL`: URL de conexión a tu base de datos PostgreSQL
    - `CORS_ORIGIN`: Origen permitido para CORS (URL de tu frontend)
    - `NODE_ENV`: Establece como "production"
 
-### Configuración recomendada en Railway
+### Comandos automáticos:
 
-- **Servicio**: Configura una instancia con al menos 512MB de RAM
-- **Escalado**: Inicialmente 1 instancia es suficiente, escala según necesidad
-- **Variables de entorno**: Configura a través de la interfaz de Railway
-- **Monitoreo**: Habilita logs y métricas para supervisar el rendimiento
+Railway ejecutará los siguientes comandos automáticamente:
+- Construcción: `npm run build`
+- Inicio: `npm start`
 
 ## Licencia
 
